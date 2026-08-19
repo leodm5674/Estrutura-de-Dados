@@ -1,4 +1,4 @@
-/*Exercícios de Registros e Manipulação de Arquivos.
+		/*Exercícios de Registros e Manipulação de Arquivos.
 
 1. Implemente um programa para tratar e armazenar as notas dos alunos de uma turma de uma disciplina.
 
