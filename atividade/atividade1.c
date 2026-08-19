@@ -35,17 +35,65 @@ void Inseriraluno(Aluno turma[], int i) {
     }
 }
 
-int main(int argc, char **argv) {
-    Aluno turma[40];
-    int qtdalunos;
+	void Exibiraluno(Aluno turma[], int qtd){
+		for(int i = 0; i < qtd; i++){
+			printf("Nome: %s", turma[i].nome);
+			
+			}
+		
+		
+		}
 
-    printf("Quantos alunos deseja cadastrar (max 40)? ");
-    scanf("%d", &qtdalunos);
+	int main(int argc, char **argv) {
+		Aluno turma[40];
+		int qtdalunos = 0;
+		int novalote = 0;
+		int opcao;
 
-    for (int i = 0; i < qtdalunos; i++) {
-        printf("\n--- Cadastrando Aluno %d ---\n", i + 1);
-        Inseriraluno(turma, i);
-    }
+    do {
+        printf("\n1-Inserir aluno\n");
+        printf("2-Exibir aluno\n");
+        printf("3-Salvar Dados\n");
+        printf("4-Carrega dados\n");
+        printf("5-Sair do Programa\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Quantos alunos deseja cadastrar? ");
+                scanf("%d", &novalote);
+
+                for (int i = 0; i < novalote; i++) {
+                    if (qtdalunos < 40) {
+                        printf("\n--- Aluno %d ---\n", qtdalunos + 1);
+                        Inseriraluno(turma, qtdalunos);
+                        qtdalunos++;
+                    } else {
+                        printf("Turma cheia!\n");
+                        break;
+                    }
+                }
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                printf("Saindo...\n");
+                break;
+
+            default:
+                printf("Opcao invalida!\n");
+        }
+    } while (opcao != 5);
 
     return 0;
 }
+
