@@ -88,7 +88,7 @@ void Inseriraluno(Aluno turma[], int i) {
 	int main(int argc, char **argv) {
 		Aluno turma[40];
 		int qtdalunos = 0;
-		int novalote = 0;
+		int numalunos = 0;
 		int opcao;
 
     do {
@@ -103,9 +103,9 @@ void Inseriraluno(Aluno turma[], int i) {
         switch (opcao) {
             case 1:
                 printf("Quantos alunos deseja cadastrar? ");
-                scanf("%d", &novalote);
+                scanf("%d", &);
 
-                for (int i = 0; i < novalote; i++) {
+                for (int i = 0; i < numalunos; i++) {
                     if (qtdalunos < 40) {
                         printf("Aluno %d\n", qtdalunos + 1);
                         Inseriraluno(turma, qtdalunos);
