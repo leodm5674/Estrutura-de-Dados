@@ -84,8 +84,32 @@ void Inseriraluno(Aluno turma[], int i) {
 		
 		
 		}
-
-	int main(int argc, char **argv) {
+		
+        void Salvardados(Aluno turma[], int qtd){
+        FILE *arquivo = fopen("alunos.bin", "wb"); // wb significa write binary
+        
+        if (arquivo == NULL) {
+        printf("erro ao abrir o arquivo para salvar\n");//mensagem de verificacao
+          return; // Se deu erro, cancela e sai da funçao imediatamente para não travar o programa
+        }
+        
+        fwrite(turma, sizeof(Aluno), qtd, arquivo); // gravar dados
+        
+        fclose(arquivo);
+        printf("\ndados salvos\n");
+        }
+        
+        
+        void Carregardados(Aluno turma[], int *qtd) {
+            FILE *arquivo = fopen("alunos.bin", "rb");
+        
+            if (arquivo != NULL) { // testa se o arquivo existe
+                *qtd = fread(turma, sizeof(Aluno), 40, arquivo);
+                fclose(arquivo);
+            }
+        }
+           
+    	int main(int argc, char **argv) {
 		Aluno turma[40];
 		int qtdalunos = 0;
 		int numalunos = 0;
@@ -103,7 +127,7 @@ void Inseriraluno(Aluno turma[], int i) {
         switch (opcao) {
             case 1:
                 printf("Quantos alunos deseja cadastrar? ");
-                scanf("%d", &);
+                scanf("%d", &numalunos);
 
                 for (int i = 0; i < numalunos; i++) {
                     if (qtdalunos < 40) {
@@ -111,7 +135,7 @@ void Inseriraluno(Aluno turma[], int i) {
                         Inseriraluno(turma, qtdalunos);
                         qtdalunos++;
                     } else {
-                        printf("Turma cheia!\n");
+                        printf("turma cheia\n");
                         break;
                     }
                 }
@@ -122,20 +146,21 @@ void Inseriraluno(Aluno turma[], int i) {
                 break;
 	
             case 3:
+                Salvardados(turma,qtdalunos);
                 break;
 
             case 4:
+                Carregardados(turma,&qtdalunos);
                 break;
 
             case 5:
-                printf("Saindo...\n");
+                printf("Saiu do Programa\n");
                 break;
 
             default:
-                printf("Opcao invalida!\n");
+                printf("Opcao invalida\n");
         }
     } while (opcao != 5);
 
     return 0;
 }
-
