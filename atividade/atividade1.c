@@ -49,6 +49,7 @@ void Inseriraluno(Aluno turma[], int i) {
     getchar();
     printf("Digite o nome do aluno: ");
     fgets(turma[i].nome, 40, stdin);
+    turma[i].nome[strcspn(turma[i].nome, "\n")] = 0;
 
     printf("Digite a matricula do aluno: ");
     scanf("%d", &turma[i].matricula);
@@ -71,49 +72,46 @@ void Inseriraluno(Aluno turma[], int i) {
     }
 }
 
-	void Exibiraluno(Aluno turma[], int qtd){
-		for(int i = 0; i < qtd; i++){
-			printf("\nNome: %s \n", turma[i].nome);
-			printf("Matricula: %d\n", turma[i].matricula);
-			printf("Nota 1: %.2f\n", turma[i].p1);
-			printf("Nota 2: %.2f\n", turma[i].p2);
-			printf("Falta: %d\n", turma[i].faltas);
-			printf("Média %.2f \n",turma[i].media);
-			
-			}
-		
-		
-		}
-		
-        void Salvardados(Aluno turma[], int qtd){
-        FILE *arquivo = fopen("alunos.bin", "wb"); // wb significa write binary
-        
-        if (arquivo == NULL) {
+void Exibiraluno(Aluno turma[], int qtd){
+    for(int i = 0; i < qtd; i++){
+        printf("\nNome: %s \n", turma[i].nome);
+        printf("Matricula: %d\n", turma[i].matricula);
+        printf("Nota 1: %.2f\n", turma[i].p1);
+        printf("Nota 2: %.2f\n", turma[i].p2);
+        printf("Média: %.2f \n", turma[i].media);
+        printf("Falta: %d\n", turma[i].faltas);
+        printf("Situacao: %s\n", turma[i].situacao);
+    }
+}
+
+void Salvardados(Aluno turma[], int qtd){
+    FILE *arquivo = fopen("alunos.bin", "wb"); // wb significa write binary
+    
+    if (arquivo == NULL) {
         printf("erro ao abrir o arquivo para salvar\n");//mensagem de verificacao
-          return; // Se deu erro, cancela e sai da funçao imediatamente para não travar o programa
-        }
-        
-        fwrite(turma, sizeof(Aluno), qtd, arquivo); // gravar dados
-        
+        return; // Se deu erro, cancela e sai da funçao imediatamente para não travar o programa
+    }
+    
+    fwrite(turma, sizeof(Aluno), qtd, arquivo); // gravar dados
+    
+    fclose(arquivo);
+    printf("\ndados salvos\n");
+}
+
+void Carregardados(Aluno turma[], int *qtd) {
+    FILE *arquivo = fopen("alunos.bin", "rb");
+
+    if (arquivo != NULL) { // testa se o arquivo existe
+        *qtd = fread(turma, sizeof(Aluno), 40, arquivo);
         fclose(arquivo);
-        printf("\ndados salvos\n");
-        }
-        
-        
-        void Carregardados(Aluno turma[], int *qtd) {
-            FILE *arquivo = fopen("alunos.bin", "rb");
-        
-            if (arquivo != NULL) { // testa se o arquivo existe
-                *qtd = fread(turma, sizeof(Aluno), 40, arquivo);
-                fclose(arquivo);
-            }
-        }
-           
-    	int main(int argc, char **argv) {
-		Aluno turma[40];
-		int qtdalunos = 0;
-		int numalunos = 0;
-		int opcao;
+    }
+}
+
+int main(int argc, char **argv) {
+    Aluno turma[40];
+    int qtdalunos = 0;
+    int numalunos = 0;
+    int opcao;
 
     do {
         printf("\n1-Inserir aluno\n");
@@ -142,9 +140,9 @@ void Inseriraluno(Aluno turma[], int i) {
                 break;
 
             case 2:
-				Exibiraluno(turma,qtdalunos);
+                Exibiraluno(turma,qtdalunos);
                 break;
-	
+
             case 3:
                 Salvardados(turma,qtdalunos);
                 break;
@@ -158,7 +156,7 @@ void Inseriraluno(Aluno turma[], int i) {
                 break;
 
             default:
-                printf("Opcao invalida\n");
+                printf("Opcao invalida!\n");
         }
     } while (opcao != 5);
 
