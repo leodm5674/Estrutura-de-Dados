@@ -38,127 +38,138 @@ Postar arquivo com o código fonte em C.*/
 #include <string.h>
 
 typedef struct {
-    char nome[40];
-    int matricula;
-    float p1, p2, media;
-    int faltas;
-    char situacao[10];
+	char nome[40];
+	int matricula;
+	float p1, p2, media;
+	int faltas;
+	char situacao[10];
 } Aluno;
 
 void Inseriraluno(Aluno turma[], int i) {
-    getchar();
-    printf("Digite o nome do aluno: ");
-    fgets(turma[i].nome, 40, stdin);
-    turma[i].nome[strcspn(turma[i].nome, "\n")] = 0;
+	getchar();
+	printf("Digite o nome do aluno: ");
+	fgets(turma[i].nome, 40, stdin);
+	turma[i].nome[strcspn(turma[i].nome, "\n")] = 0;
 
-    printf("Digite a matricula do aluno: ");
-    scanf("%d", &turma[i].matricula);
+	printf("Digite a matricula do aluno: ");
+	scanf("%d", &turma[i].matricula);
 
-    printf("Digite a nota da Prova 1: ");
-    scanf("%f", &turma[i].p1);
+	printf("Digite a nota da Prova 1: ");
+	scanf("%f", &turma[i].p1);
 
-    printf("Digite a nota da Prova 2: ");
-    scanf("%f", &turma[i].p2);
+	printf("Digite a nota da Prova 2: ");
+	scanf("%f", &turma[i].p2);
 
-    printf("Digite a quantidade de faltas: ");
-    scanf("%d", &turma[i].faltas);
+	printf("Digite a quantidade de faltas: ");
+	scanf("%d", &turma[i].faltas);
 
-    turma[i].media = (turma[i].p1 + turma[i].p2) / 2.0;
+	turma[i].media = (turma[i].p1 + turma[i].p2) / 2.0;
 
-    if (turma[i].media >= 6.0 && turma[i].faltas <= 20) {
-        strcpy(turma[i].situacao, "Aprovado");
-    } else {
-        strcpy(turma[i].situacao, "Reprovado");
-    }
+	if (turma[i].media >= 6.0 && turma[i].faltas <= 20) {
+		strcpy(turma[i].situacao, "Aprovado");
+	} else {
+		strcpy(turma[i].situacao, "Reprovado");
+	}
 }
 
-void Exibiraluno(Aluno turma[], int qtd){
-    for(int i = 0; i < qtd; i++){
-        printf("\nNome: %s \n", turma[i].nome);
-        printf("Matricula: %d\n", turma[i].matricula);
-        printf("Nota 1: %.2f\n", turma[i].p1);
-        printf("Nota 2: %.2f\n", turma[i].p2);
-        printf("Média: %.2f \n", turma[i].media);
-        printf("Falta: %d\n", turma[i].faltas);
-        printf("Situacao: %s\n", turma[i].situacao);
-    }
+void Exibiraluno(Aluno turma[], int qtd) {
+	for(int i = 0; i < qtd; i++) {
+		printf("\nNome: %s \n", turma[i].nome);
+		printf("Matricula: %d\n", turma[i].matricula);
+		printf("Nota 1: %.2f\n", turma[i].p1);
+		printf("Nota 2: %.2f\n", turma[i].p2);
+		printf("Média: %.2f \n", turma[i].media);
+		printf("Falta: %d\n", turma[i].faltas);
+		printf("Situacao: %s\n", turma[i].situacao);
+	}
 }
 
-void Salvardados(Aluno turma[], int qtd){
-    FILE *arquivo = fopen("alunos.bin", "wb"); // wb significa write binary
-    
-    if (arquivo == NULL) {
-        printf("erro ao abrir o arquivo para salvar\n");//mensagem de verificacao
-        return; // Se deu erro, cancela e sai da funçao imediatamente para não travar o programa
-    }
-    
-    fwrite(turma, sizeof(Aluno), qtd, arquivo); // gravar dados
-    
-    fclose(arquivo);
-    printf("\ndados salvos\n");
+void Salvardados(Aluno turma[], int qtd) {
+	FILE *arquivo = fopen("alunos.bin", "wb"); // wb significa write binary
+
+	if (arquivo == NULL) {
+		printf("erro ao abrir o arquivo para salvar\n");//mensagem de verificacao
+		return; // Se deu erro, cancela e sai da funçao imediatamente para não travar o programa
+	}
+
+	fwrite(turma, sizeof(Aluno), qtd, arquivo); // gravar dados
+
+	fclose(arquivo);
+	printf("\ndados salvos\n");
 }
 
 void Carregardados(Aluno turma[], int *qtd) {
-    FILE *arquivo = fopen("alunos.bin", "rb");
+	FILE *arquivo = fopen("alunos.bin", "rb");
 
-    if (arquivo != NULL) { // testa se o arquivo existe
-        *qtd = fread(turma, sizeof(Aluno), 40, arquivo);
-        fclose(arquivo);
-    }
+	if (arquivo != NULL) { // testa se o arquivo existe
+		*qtd = fread(turma, sizeof(Aluno), 40, arquivo);
+		fclose(arquivo);
+	}
 }
 
 int main(int argc, char **argv) {
-    Aluno turma[40];
-    int qtdalunos = 0;
-    int numalunos = 0;
-    int opcao;
+	Aluno turma[40];
+	int qtdalunos = 0;
+	int numalunos = 0;
+	int opcao;
 
-    do {
-        printf("\n1-Inserir aluno\n");
-        printf("2-Exibir aluno\n");
-        printf("3-Salvar Dados\n");
-        printf("4-Carrega dados\n");
-        printf("5-Sair do Programa\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+	do {
+		printf("\n1-Inserir aluno\n");
+		printf("2-Exibir aluno\n");
+		printf("3-Salvar Dados\n");
+		printf("4-Carrega dados\n");
+		printf("5-Sair do Programa\n");
+		printf("Escolha uma opcao: ");
+		scanf("%d", &opcao);
 
-        switch (opcao) {
-            case 1:
-                printf("Quantos alunos deseja cadastrar? ");
-                scanf("%d", &numalunos);
+		switch (opcao) {
+		case 1:
+			printf("Quantos alunos deseja cadastrar? ");
+			scanf("%d", &numalunos);
 
-                for (int i = 0; i < numalunos; i++) {
-                    if (qtdalunos < 40) {
-                        printf("Aluno %d\n", qtdalunos + 1);
-                        Inseriraluno(turma, qtdalunos);
-                        qtdalunos++;
-                    } else {
-                        printf("turma cheia\n");
-                        break;
-                    }
-                }
-                break;
+			for (int i = 0; i < numalunos; i++) {
+				if (qtdalunos < 40) {
+					printf("Aluno %d\n", qtdalunos + 1);
+					Inseriraluno(turma, qtdalunos);
+					qtdalunos++;
+				} else {
+					printf("turma cheia\n");
+					break;
+				}
+			}
+			break;
 
-            case 2:
-                Exibiraluno(turma,qtdalunos);
-                break;
+		case 2:
+			if (qtdalunos >= 1) {
+				Exibiraluno(turma, qtdalunos);
+			} else {
+				printf("Nenhum aluno cadastrado\n");
+			}
+			break;
 
-            case 3:
-                Salvardados(turma,qtdalunos);
-                break;
+		case 3:
+			if (qtdalunos >= 1) {
+				Salvardados(turma, qtdalunos);
+			} else {
+				printf("Nenhum aluno cadastrado\n");
+			}
+			break;
 
-            case 4:
-                Carregardados(turma,&qtdalunos);
-                break;
+	    	case 4:
+			Carregardados(turma, &qtdalunos);
+			break;
 
-            case 5:
-                printf("Saiu do Programa\n");
-                break;
 
-            default:
-                printf("Opcao invalida!\n");
+		    
+        	case 5:
+	    	printf("Saiu do Programa\n");
+	         break;
+
+	default:
+		printf("Opcao invalida!\n");
+	}
         }
-    } while (opcao != 5);
+        while (opcao != 5);
 
-    return 0;
+return 0;
 }
