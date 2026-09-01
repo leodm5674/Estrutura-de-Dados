@@ -42,7 +42,7 @@ int main() {
 
     printf("\nsalvando dados em %s\n", ARQUIVO);
     if (salvar_aluno(&a, ARQUIVO) == 0) {
-        printf("Sucesso!\n");
+        printf("salvo\n");
     }
 
     return 0;
