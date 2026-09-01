@@ -3,7 +3,7 @@
 #include "aluno.h"
 
 int salvar_aluno(const Aluno *aluno, const char *nomedoarquivo) {
-    FILE *arquivo = fopen(filename, "ab");
+    FILE *arquivo = fopen(nomedoarquivo, "ab");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo para escrita.\n");
         return 1;
