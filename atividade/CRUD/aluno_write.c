@@ -5,7 +5,7 @@
 int salvar_aluno(const Aluno *aluno, const char *nomedoarquivo) {
     FILE *arquivo = fopen(nomedoarquivo, "ab");
     if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
+        printf("erro ao abrir o arquivo\n");
         return 1;
     }
     fwrite(aluno, sizeof(Aluno), 1, arquivo);
