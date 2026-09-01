@@ -1,7 +1,7 @@
 #ifndef ALUNO_H
 #define ALUNO_H
  
-#define MAX_ALUNOS 40
+
 #define ARQUIVO "alunos.bin"
  
 typedef struct {
