@@ -24,7 +24,6 @@ int main() {
     int matricula_busca;
     Aluno aluno;
 
-    printf("--- BUSCA ALUNO ---\n");
     printf("Digite a matricula do aluno: ");
     scanf("%d", &matricula_busca);
 
