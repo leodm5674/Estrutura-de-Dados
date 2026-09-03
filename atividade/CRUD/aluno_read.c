@@ -26,6 +26,7 @@ int main() {
     printf("Lista de alunos:\n\n");
 
     for (int i = 0; i < quantidade; i++) {
+        printf("Id: %d\n", turma[i].id);
         printf("Matricula: %d\n", turma[i].matricula);
         printf("Nome: %s\n", turma[i].nome);
         printf("Prova 1: %.2f\n", turma[i].prova1);
