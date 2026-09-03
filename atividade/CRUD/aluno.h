@@ -1,10 +1,10 @@
 #ifndef ALUNO_H
 #define ALUNO_H
- 
 
 #define ARQUIVO "alunos.bin"
- 
+
 typedef struct {
+    int id;
     char nome[41];
     int matricula;
     float prova1;
@@ -13,3 +13,5 @@ typedef struct {
     int faltas;
     char situacao[10]; 
 } Aluno;
+
+#endif
