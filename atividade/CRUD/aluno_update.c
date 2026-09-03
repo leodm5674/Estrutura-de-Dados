@@ -32,6 +32,7 @@ int main() {
     scanf("%d", &matricula);
 
     if (find_aluno(matricula, &aluno)) {
+        printf("Id: %d\n", aluno.id);
         printf("Nome: %s\n", aluno.nome);
         printf("Prova 1: %.2f\n", aluno.prova1);
         printf("Prova 2: %.2f\n", aluno.prova2);
