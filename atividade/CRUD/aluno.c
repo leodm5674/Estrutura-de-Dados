@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "aluno.h"
+
+int gerar_id() {
+    return (int)time(NULL);
+}
 
 int find_aluno(int matricula_alvo, Aluno *a) {
     FILE *arquivo = fopen(ARQUIVO, "rb");
@@ -90,6 +95,7 @@ int remover_aluno(int matricula_alvo) {
 }
 
 void imprime_aluno(Aluno a) {
+    printf("Id: %d\n", a.id);
     printf("Matricula: %d\n", a.matricula);
     printf("Nome: %s\n", a.nome);
     printf("Prova 1: %.2f\n", a.prova1);
@@ -120,6 +126,7 @@ int main() {
         switch (opcao) {
 
             case 1:
+                a.id = gerar_id();
                 printf("Nome: ");
                 getchar();
                 fgets(a.nome, sizeof(a.nome), stdin);
