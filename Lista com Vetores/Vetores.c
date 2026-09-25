@@ -36,10 +36,10 @@ void insereLista(tpLista l, char *item)
     if (i<MaxItens)
     {
         strcpy(l[i], item);
-        printf("\nItem (%s) inserido com sucesso", item);
+        printf("\nItem (%s) inserido ", item);
     }
     else
-        printf("\nLista cheia, nao pode inserir");
+        printf("\nLista cheia");
 }
 
 void retiraLista(tpLista l, char *item)
