@@ -77,20 +77,17 @@ int main()
         printf("0. Sair\n");
         printf("Opcao: ");
         scanf("%d", &opcao);
-        getchar();
 
         switch(opcao)
         {
             case 1:
                 printf("Item: ");
-                fgets(item, TamItem, stdin);
-                item[strcspn(item, "\n")] = '\0';
+                scanf("%s", item); 
                 insereLista(l1, item);
                 break;
             case 2:
                 printf("Item: ");
-                fgets(item, TamItem, stdin);
-                item[strcspn(item, "\n")] = '\0';
+                scanf("%s", item); 
                 retiraLista(l1, item);
                 break;
             case 3:
