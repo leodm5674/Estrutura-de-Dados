@@ -66,7 +66,6 @@ int main()
     int opcao;
     char item[TamItem];
 
-    // A lista já é criada automaticamente aqui
     criaLista(l1);
 
     do
@@ -103,7 +102,7 @@ int main()
             case 0:
                 break;
             default:
-                printf("\nOpcao invalida!");
+                printf("\nOpcao invalida");
                 break;
         }
     } while(opcao != 0);
