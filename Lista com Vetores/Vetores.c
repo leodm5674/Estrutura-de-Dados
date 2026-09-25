@@ -16,10 +16,10 @@ void criaLista(tpLista l)
 void imprimeLista(tpLista l)
 {
     int i;
-    printf("\nItens da lista\n");
+    printf("itens da lista \n");
     for(i=0; i<MaxItens && strlen(l[i])>0; i++)
-        printf("\n%s", l[i]);
-    printf("\n");
+        printf("\n %s", l[i]);
+    
 }
 
 int contaLista(tpLista l)
@@ -36,10 +36,10 @@ void insereLista(tpLista l, char *item)
     if (i<MaxItens)
     {
         strcpy(l[i], item);
-        printf("\nItem (%s) inserido ", item);
+        printf("\nitem (%s) inserido ", item);
     }
     else
-        printf("\nLista cheia");
+        printf("\nlista cheia");
 }
 
 void retiraLista(tpLista l, char *item)
@@ -57,49 +57,49 @@ void retiraLista(tpLista l, char *item)
         l[MaxItens-1][0] = '\0';
     }
     else
-        printf("\nItem (%s) nao encontrado", item);
+        printf("\nitem (%s) nao encontrado", item);
 }
 
 int main()
 {
-    tpLista l1;
+    tpLista listatopzera;
     int opcao;
     char item[TamItem];
 
-    criaLista(l1);
+    criaLista(listatopzera); // cria lista antes, pra ter uma tabela autoticamente
 
     do
     {
-        printf("\n1. Inserir\n");
-        printf("2. Retirar\n");
-        printf("3. Contar\n");
-        printf("4. Exibir\n");
-        printf("0. Sair\n");
+        printf("\n1 - Inserir\n");
+        printf("2 - Retirar\n");
+        printf("3 - Contar\n");
+        printf("4 - Exibir\n");
+        printf("0 - Sair\n");
         printf("Opcao: ");
         scanf("%d", &opcao);
 
         switch(opcao)
         {
             case 1:
-                printf("Item: ");
+                printf("item: ");
                 scanf("%s", item); 
-                insereLista(l1, item);
+                insereLista(listatopzera, item);
                 break;
             case 2:
-                printf("Item: ");
+                printf("item: ");
                 scanf("%s", item); 
-                retiraLista(l1, item);
+                retiraLista(listatopzera, item);
                 break;
             case 3:
-                printf("\nTotal: %d", contaLista(l1));
+                printf("\nttotal: %d", contaLista(listatopzera));
                 break;
             case 4:
-                imprimeLista(l1);
+                imprimeLista(listatopzera);
                 break;
             case 0:
                 break;
             default:
-                printf("\nOpcao invalida");
+                printf("\nopcao invalida");
                 break;
         }
     } while(opcao != 0);
