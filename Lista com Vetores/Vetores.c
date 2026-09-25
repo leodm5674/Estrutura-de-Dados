@@ -92,7 +92,7 @@ int main()
     int opcao;
     char item[TamItem]; // string com capacidade 20 caracteres 
 
-    criaLista(listatopzera); // cria lista antes, pra ter uma tabela automaticamente
+    criaLista(listatopzera); // cria lista antes, pra ter uma automaticamente, sem precisa pedir pro usuario criar
 
     do
     {
@@ -112,7 +112,7 @@ int main()
                 if(strlen(item) < 20){
                 insereLista(listatopzera, item);
 			}	else{
-				printf("Item passa da capacidade da capacidade da String");
+				printf("item passa da capacidade da capacidade da String");
 				}
                 break;
             case 2:
