@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <string.h>
-
+    
+    
 #define MaxItens 10
 #define TamItem 20
 
 typedef char tpLista[MaxItens][TamItem];
+
+
+
 
 void criaLista(tpLista l)
 {
@@ -13,21 +17,33 @@ void criaLista(tpLista l)
         l[i][0] = '\0';
 }
 
+
+
+
+
 void imprimeLista(tpLista l)
 {
     int i;
+    
     printf("itens da lista \n");
     for(i=0; i<MaxItens && strlen(l[i])>0; i++)
         printf("\n %s", l[i]);
     
 }
 
-int contaLista(tpLista l)
+
+
+
+void contaLista(tpLista l)
 {
-    int i;
-    for (i = 0; i<MaxItens && strlen(l[i])>0; i++);
-    return(i);
+    int k = 0;
+    for (int i = 0; i<MaxItens && strlen(l[i])>0; i++){
+		k++;
+	}
+	printf("A lista tem %d itens", k);
 }
+
+
 
 void insereLista(tpLista l, char *item)
 {
@@ -36,11 +52,14 @@ void insereLista(tpLista l, char *item)
     if (i<MaxItens)
     {
         strcpy(l[i], item);
-        printf("\nitem (%s) inserido ", item);
+        printf("item (%s) inserido ", item);
     }
     else
         printf("\nlista cheia");
 }
+
+
+
 
 void retiraLista(tpLista l, char *item)
 {
@@ -48,7 +67,7 @@ void retiraLista(tpLista l, char *item)
     for(i=0; i<MaxItens && strlen(l[i])>0 && (strcmp(l[i],item) != 0); i++);
     if (i<MaxItens && (strcmp(l[i],item) == 0))
     {
-        printf("\nItem (%s) encontrado, removendo", item);
+        printf("\nitem (%s) encontrado, removendo", item);
         if (i < (MaxItens-1))
         {
             for (; i<(MaxItens-1) && strlen(l[i])>0; i++)
@@ -60,13 +79,20 @@ void retiraLista(tpLista l, char *item)
         printf("\nitem (%s) nao encontrado", item);
 }
 
+
+
+
+
+
+
+
 int main()
 {
     tpLista listatopzera;
     int opcao;
-    char item[TamItem];
+    char item[TamItem]; // string com capacidade 20 caracteres 
 
-    criaLista(listatopzera); // cria lista antes, pra ter uma tabela autoticamente
+    criaLista(listatopzera); // cria lista antes, pra ter uma tabela automaticamente
 
     do
     {
@@ -83,7 +109,11 @@ int main()
             case 1:
                 printf("item: ");
                 scanf("%s", item); 
+                if(strlen(item) < 20){
                 insereLista(listatopzera, item);
+			}	else{
+				printf("Item passa da capacidade da capacidade da String");
+				}
                 break;
             case 2:
                 printf("item: ");
@@ -91,8 +121,8 @@ int main()
                 retiraLista(listatopzera, item);
                 break;
             case 3:
-                printf("\nttotal: %d", contaLista(listatopzera));
-                break;
+				contaLista(listatopzera);
+					break;
             case 4:
                 imprimeLista(listatopzera);
                 break;
