@@ -41,7 +41,7 @@ int main()
 
             break;
         case 5:
-            printf("Saindo do programa\n");
+            printf("Saiu do Programa\n");
             break;
         default:
             printf("Opcao Invalida\n");
