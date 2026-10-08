@@ -1,21 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct elemento Nodo;
+typedef struct elemento Lista;
 struct elemento
 {
     int dado;
     struct elemento *prox;
 };
 
-Nodo *criaLista()
+Lista *criaLista()
 {
     return NULL;
 }
 
+void imprimir(Lista *lista)
+{
+    while (lista != NULL)
+    {
+        printf("%d ", lista->dado); //aqui mostramos a caixinha atual
+        lista = lista->prox;           // e aqui vai pra proxima caixinha
+    }
+}
+
+int contar(Lista *lista){
+    int contador = 0;
+    while(lista != NULL){
+        contador++;
+        lista = lista->prox; // proxima caixinha, se nao fica num loop infinito
+    }
+    return contador;
+
+}
+
+Lista* buscar(Lista *lista, int valorbuscado){
+    while (lista != NULL){
+        if(lista->dado == valorbuscado)
+            return lista;
+
+        lista = lista->prox;
+    } 
+        printf("Lista nao encontrada");
+        return 0;
+
+}
+
+void inserir(Lista *lista, int valor){
+
+
+
+
+
+}
+
+
+
+
 int main()
 {
-    Nodo *minhaLista = criaLista();
+    Lista *minhaLista = criaLista();
     int opcao = 0;
     while (opcao != 5)
     {
@@ -41,7 +83,7 @@ int main()
 
             break;
         case 5:
-            printf("Saiu do Programa\n");
+            printf("Saiu do programa\n");
             break;
         default:
             printf("Opcao Invalida\n");
