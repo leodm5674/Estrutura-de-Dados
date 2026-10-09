@@ -10,7 +10,6 @@ struct elemento
 
 Lista *criaLista()
 {
-    Lista *cabecalho = (Lista *)malloc(sizeof(Lista));
     cabecalho->prox = NULL;
     return cabecalho;
 }
