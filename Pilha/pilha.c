@@ -55,7 +55,7 @@ Deve ser postado o código fonte em C, compilável e funcionando, sem o uso de b
 		ap = p;
 		while(ap != NULL){
 			
-			printf("%d ", ap->dado);
+			printf("%d \n", ap->dado);
 			ap = ap->prox;
 		
 		
@@ -75,6 +75,7 @@ Deve ser postado o código fonte em C, compilável e funcionando, sem o uso de b
 			p = p->prox;
 			
 			free(ap);
+			printf("Desimpilhado com sucesso");
 			}
 		else
 		{
@@ -118,7 +119,7 @@ int main()
         p = empilhaPilha(p, valor);
             break;
         case 2:
-        
+        p = desempilha(p,&valor);
             break;
         case 3:
              imprimePilha(p);
